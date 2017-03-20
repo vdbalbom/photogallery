@@ -20,6 +20,6 @@ class ContributorSessionController < ApplicationController
 
   def destroy
     log_out_contributor
-    render 'new'
+    redirect_to root_url
   end
 end

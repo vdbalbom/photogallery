@@ -8,6 +8,10 @@ module ContributorSessionHelper
     Contributor.find_by(id: session[:contributor_id])
   end
 
+  def current_contributor_name
+    current_contributor.name
+  end
+
   def contributor_logged_in?
     !current_contributor.nil?
   end

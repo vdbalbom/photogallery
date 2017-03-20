@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'contributor/settings'
   get 'contributor/change_password'
 
-  get '/contributor', to: 'contributor_session#new'
-  post '/contributor', to: 'contributor_session#create'
-  delete '/contributor', to: 'contributor_session#destroy'
+  get '/login', to: 'contributor_session#new'
+  post '/login', to: 'contributor_session#create'
+  delete '/login', to: 'contributor_session#destroy'
 end
