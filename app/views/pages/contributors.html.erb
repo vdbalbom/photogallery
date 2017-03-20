@@ -1,2 +1,17 @@
-<h1>Pages#contributors</h1>
-<p>Find me in app/views/pages/contributors.html.erb</p>
+<ul class="contributors">
+  <% @contributors.each do |contributor| %>
+      <div>
+        <%= image_tag contributor.profile_picture.url(:thumb) %>
+        <div>
+          <div>
+            <h3> <%= link_to contributor.name, '#' %> </h3>
+          </div>
+            <div> <%= contributor.description %> </div>
+            <div> <%= contributor.email %> </div>
+            <div> <%= contributor.facebook_link %> </div>
+            <div> <%= contributor.instagram_link %> </div>
+            <div> <%= contributor.tumblr_link %> </div>
+        </div>
+      </div>
+  <% end %>
+</ul>

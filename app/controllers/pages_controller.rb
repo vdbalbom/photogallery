@@ -3,5 +3,6 @@ class PagesController < ApplicationController
   end
 
   def contributors
+    @contributors = Contributor.all
   end
 end
