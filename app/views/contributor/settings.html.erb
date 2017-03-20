@@ -1,2 +1,42 @@
-<h1>Contributor#settings</h1>
-<p>Find me in app/views/contributor/settings.html.erb</p>
+<% if contributor_logged_in? %>
+  <h1>Update your profile</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@contributor, url: contributor_settings_path) do |f| %>
+
+        <%= f.label :name, "* Name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :profile_picture, "Profile Picture (use older if no file selected)" %>
+        <%= f.file_field :profile_picture %>
+
+        <%= f.label :description, "Description" %>
+        <%= f.text_area :description, class: 'form-control' %>
+
+        <%= f.label :email, "* Email" %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+
+        <%= f.label :facebook_link, "Link to Facebook Account" %>
+        <%= f.text_field :facebook_link, class: 'form-control' %>
+
+        <%= f.label :instagram_link, "Link to Instagram Account" %>
+        <%= f.text_field :instagram_link, class: 'form-control' %>
+
+        <%= f.label :tumblr_link, "Link to Tumblr Account" %>
+        <%= f.text_field :tumblr_link, class: 'form-control' %>
+
+        <%= f.label :login, "* Login" %>
+        <%= f.text_field :login, class: 'form-control' %>
+
+        <%= f.label :password, "* Actual Password" %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
+</div>
+<% else %>
+  This is a contributor area.
+<% end %>
