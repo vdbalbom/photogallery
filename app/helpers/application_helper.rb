@@ -6,4 +6,8 @@ module ApplicationHelper
   def site_description
     Admin.first.site_description
   end
+
+  def all_contributors
+    Contributor.all
+  end
 end
