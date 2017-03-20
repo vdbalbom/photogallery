@@ -18,9 +18,9 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"> Hello, <%= contributor_name %> </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Settings", '#' %></li>
+            <li><%= link_to "Settings", contributor_settings_path %></li>
             <li><%= link_to "Upload Photo", '#' %></li>
-            <li><%= link_to "Change Password", '#' %></li>
+            <li><%= link_to "Change Password", contributor_change_password_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Logout", '#' %></li>
           </ul>
