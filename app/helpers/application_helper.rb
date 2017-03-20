@@ -3,10 +3,6 @@ module ApplicationHelper
     "typeinstant"
   end
 
-  def admin_logged_in?
-    true
-  end
-
   def contributor_logged_in?
     true
   end

@@ -22,7 +22,7 @@
             <li><%= link_to "Upload Photo", '#' %></li>
             <li><%= link_to "Change Password", contributor_change_password_path %></li>
             <li class="divider"></li>
-            <li><%= link_to "Logout", '#' %></li>
+            <li><%= link_to "Logout", contributor_path, method: "delete" %></li>
           </ul>
         </li>
         <% end %>
@@ -34,7 +34,7 @@
               <li><%= link_to "Settings", admin_settings_path %></li>
               <li><%= link_to "Change Password", admin_change_password_path %></li>
               <li class="divider"></li>
-              <li><%= link_to "Logout", '#' %></li>
+              <li><%= link_to "Logout", admin_path, method: "delete" %></li>
             </ul>
           </li>
         <% end %>

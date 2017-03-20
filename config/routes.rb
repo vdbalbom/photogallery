@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   get 'admin/settings'
   get 'admin/change_password'
 
+  get '/admin', to: 'admin_session#new'
+  post '/admin', to: 'admin_session#create'
+  delete '/admin', to: 'admin_session#destroy'
+
   get 'contributor/settings'
   get 'contributor/change_password'
+
+  get '/contributor', to: 'contributor_session#new'
+  post '/contributor', to: 'contributor_session#create'
+  delete '/contributor', to: 'contributor_session#destroy'
 end
