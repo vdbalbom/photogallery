@@ -1,5 +1,9 @@
 module ApplicationHelper
   def site_title
-    "typeinstant"
+    Admin.first.site_title
+  end
+
+  def site_description
+    Admin.first.site_description
   end
 end
