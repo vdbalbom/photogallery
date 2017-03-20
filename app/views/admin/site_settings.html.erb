@@ -1,17 +1,17 @@
 <% if admin_logged_in? %>
-  <h1>Admin Settings</h1>
+  <h1>Site Settings</h1>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@admin, url: admin_settings_path) do |f| %>
+      <%= form_for(@admin, url: admin_site_settings_path) do |f| %>
 
-        <%= f.label :login, "* Login" %>
-        <%= f.text_field :login, class: 'form-control' %>
+        <%= f.label :site_title, "* Site Title" %>
+        <%= f.text_field :site_title, class: 'form-control' %>
+
+        <%= f.label :site_description, "Site Description" %>
+        <%= f.text_area :site_description, class: 'form-control' %>
 
         <%= f.label :password, "* Password" %>
         <%= f.password_field :password, class: 'form-control' %>
-
-        <%= f.label :password_confirmation, "* Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <%= f.submit "Save changes", class: "btn btn-primary" %>
       <% end %>
