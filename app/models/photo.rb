@@ -1,6 +1,7 @@
 class Photo < ApplicationRecord
   belongs_to :contributors
   has_many :taggers
+  has_many :tags, through: :taggers
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 255 }
