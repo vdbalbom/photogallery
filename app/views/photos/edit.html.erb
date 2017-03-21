@@ -1,2 +1,29 @@
-<h1>Photos#edit</h1>
-<p>Find me in app/views/photos/edit.html.erb</p>
+<% if contributor_logged_in? %>
+  <% if current_contributor.id == @photo.contributor.id %>
+    <div>
+      <div> <%= image_tag @photo.image.url(:big_square) %> </div>
+      <div> <%= @photo.title %> </div>
+      <div> <%= @photo.description %> </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@photo, url: edit_photo_path) do |f| %>
+
+          <%= f.label :title, "* Title" %>
+          <%= f.text_field :title, class: 'form-control' %>
+
+          <%= f.label :description %>
+          <%= f.text_field :description, class: 'form-control' %>
+
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  <% else %>
+    You have not permission to do this. This is not your photo.
+  <% end %>
+<% else %>
+  This is a contributor area.
+<% end %>
