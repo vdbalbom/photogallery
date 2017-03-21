@@ -1,5 +1,12 @@
 <% if !@photo.nil? %>
   <div>
+    <% if contributor_logged_in? %>
+      <% if current_contributor.id == @photo.contributor.id %>
+        <%= link_to "Delete Photo", delete_photo_path(@photo.id), method: "delete" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
     <%= image_tag @photo.image.url(:original) %>
     <div>
       <div>

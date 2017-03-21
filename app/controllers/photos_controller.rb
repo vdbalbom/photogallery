@@ -32,11 +32,12 @@ class PhotosController < ApplicationController
     end
   end
 
-  def destroy
+  def delete
     if contributor_logged_in?
       photo = Photo.find(params[:photo_id])
       if photo.contributor_id == current_contributor.id
         photo.delete
+        redirect_to contributor_photos_path(current_contributor.id)
       end
     end
   end
