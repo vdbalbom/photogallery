@@ -20,4 +20,22 @@ Rails.application.routes.draw do
   get '/login', to: 'contributor_session#new'
   post '/login', to: 'contributor_session#create'
   delete '/login', to: 'contributor_session#destroy'
+
+  get 'gallery/photos', to: 'gallery#all_photos'
+  get 'gallery/contributors/:contributor_id/photos',
+       to: 'gallery#contributor_photos',
+       as: 'contributor_photos'
+  get 'gallery/tags/:tag_id/photos',
+       to: 'gallery#tag_photos',
+       as: 'tag_photos'
+  get 'gallery/contributors/:contributor_id/tags/:tag_id/photos',
+       to: 'gallery#contributor_tag_photos',
+       as: 'contributor_tag_photos'
+
+  get 'contributor/upload_photo', to: 'photos#new'
+  post'contributor/upload_photo', to: 'photos#create'
+  get 'gallery/photos/:photo_id', to: 'photos#show', as: 'show_photo'
+  delete 'gallery/photos/:photo_id', to: 'photos#delete'
+  get 'gallery/photos/:photo_id/edit', to: 'photos#edit'
+  patch 'gallery/photos/:photo_id/edit', to: 'photos#update'
 end

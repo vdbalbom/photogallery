@@ -1,0 +1,22 @@
+<% if contributor_logged_in? %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@photo, url: contributor_upload_photo_path) do |f| %>
+
+        <%= f.label :title, "* Title" %>
+        <%= f.text_field :title, class: 'form-control' %>
+
+        <%= f.label :image, "* Image" %>
+        <%= f.file_field :image %>
+
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+
+        <%= f.submit "Add Photo", class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+<% else %>
+  This is a contributor area.
+<% end %>

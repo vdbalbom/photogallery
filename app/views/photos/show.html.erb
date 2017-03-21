@@ -1,0 +1,14 @@
+<% if !@photo.nil? %>
+  <div>
+    <%= image_tag @photo.image.url(:original) %>
+    <div>
+      <div>
+        <h3> <%= @photo.title %> </h3>
+      </div>
+        <div> <%= @photo.description %> </div>
+          by <%= link_to @photo.contributor.name, contributor_photos_path(@photo.contributor.id) %>
+    </div>
+  </div>
+<% else %>
+Photo does not exist.
+<% end %>
