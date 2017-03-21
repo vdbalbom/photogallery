@@ -33,7 +33,7 @@ Rails.application.routes.draw do
        as: 'contributor_tag_photos'
 
   get 'contributor/upload_photo', to: 'photos#new'
-  post'contributor/upload_photo', to: 'photos#create', as: 'upload_photo_path'
+  post'contributor/upload_photo', to: 'photos#create', as: 'upload_photo'
   get 'gallery/photos/:photo_id', to: 'photos#show', as: 'show_photo'
   delete 'gallery/photos/:photo_id', to: 'photos#delete', as: 'delete_photo'
   get 'gallery/photos/:photo_id/edit', to: 'photos#edit'
