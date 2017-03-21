@@ -1,5 +1,5 @@
 class Photo < ApplicationRecord
-  belongs_to :contributors
+  belongs_to :contributor
   has_many :taggers
   has_many :tags, through: :taggers
 
