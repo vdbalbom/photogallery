@@ -47,7 +47,7 @@ class PhotosController < ApplicationController
       photo = Photo.find(params[:photo_id])
       if photo.contributor_id == current_contributor.id
         @photo = photo
-        if @photo.update_attributes(photo_params)
+        if @photo.update_attributes(edit_photo_params)
           flash.now[:success] = 'Settings updated.'
           render 'edit'
         else
@@ -64,6 +64,11 @@ class PhotosController < ApplicationController
       params.require(:photo).permit(:title,
                                     :image,
                                     :styles,
+                                    :description)
+    end
+
+    def edit_photo_params
+      params.require(:photo).permit(:title,
                                     :description)
     end
 
