@@ -2,7 +2,8 @@
   <div>
     <% if contributor_logged_in? %>
       <% if current_contributor.id == @photo.contributor.id %>
-        <%= link_to "Delete Photo", delete_photo_path(@photo.id), method: "delete" %>
+        <%= link_to "Edit", edit_photo_path(@photo.id) %>
+        <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
       <% end %>
     <% end %>
   </div>
