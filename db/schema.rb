@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319223706) do
+ActiveRecord::Schema.define(version: 20170321200350) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "login"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170319223706) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "contributor_id"
+    t.string   "tag_list_temp"
     t.index ["contributor_id"], name: "index_photos_on_contributor_id"
   end
 

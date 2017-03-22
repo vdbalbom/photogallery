@@ -12,4 +12,6 @@ class Photo < ApplicationRecord
                                  :big_square => "200x200#"}
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
   validates_attachment_size :image, :in => 0.megabytes..2.megabytes
+
+  validates :tag_list_temp, length: {maximum: 500}
 end

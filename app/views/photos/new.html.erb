@@ -12,6 +12,8 @@
         <%= f.label :description %>
         <%= f.text_field :description, class: 'form-control' %>
 
+        <%= f.label :tag_list_temp, "Tags (separate with a space)" %>
+        <%= f.text_field :tag_list_temp, class: 'form-control' %>
         <%= f.submit "Add Photo", class: "btn btn-primary" %>
       <% end %>
 
