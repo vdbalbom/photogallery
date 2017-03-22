@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch 'admin/settings', to: 'admin#update_admin'
 
   get '/admin', to: 'admin_session#new'
+  patch '/admin', to: 'admin_session#create'
   post '/admin', to: 'admin_session#create'
   delete '/admin', to: 'admin_session#destroy'
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'contributor_session#new'
   post '/login', to: 'contributor_session#create'
+  patch '/login', to: 'contributor_session#create'
   delete '/login', to: 'contributor_session#destroy'
 
   get 'gallery/photos', to: 'gallery#all_photos'
@@ -33,7 +35,8 @@ Rails.application.routes.draw do
        as: 'contributor_tag_photos'
 
   get 'contributor/upload_photo', to: 'photos#new', as: 'upload_photo'
-  post'contributor/upload_photo', to: 'photos#create'
+  post 'contributor/upload_photo', to: 'photos#create'
+  patch 'contributor/upload_photo', to: 'photos#create'
   get 'gallery/photos/:photo_id', to: 'photos#show', as: 'show_photo'
   delete 'gallery/photos/:photo_id', to: 'photos#delete'
   get 'gallery/photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
