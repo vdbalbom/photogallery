@@ -13,6 +13,11 @@
       <div>
         <h3> <%= @photo.title %> </h3>
       </div>
+      <div>
+        <% @photo.tags.each do |tag| %>
+          <%= link_to "#" + tag.name.remove(' '), tag_photos_path(tag.id)%>
+        <% end %>
+      </div>
         <div> <%= @photo.description %> </div>
           by <%= link_to @photo.contributor.name, contributor_photos_path(@photo.contributor.id) %>
     </div>

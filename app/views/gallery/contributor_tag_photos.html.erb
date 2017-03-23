@@ -1,1 +1,12 @@
+<h1>
+  <%= @tag.name %>
+  by
+  <%= @contributor.name %>
+</h1>
+<h2>
+  See more about <%= link_to  @tag.name, tag_photos_path(@tag.id) %>!
+  <br>
+  See more by <%= link_to  @contributor.name, contributor_photos_path(@contributor.id) %>!
+</h2>
+
 <%= render 'gallery/list_photos' %>
