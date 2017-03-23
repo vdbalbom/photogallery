@@ -24,7 +24,8 @@ class PhotosController < ApplicationController
       @photo.contributor = current_contributor
       if tag_list_temp_is_valid? @photo.tag_list_temp
         if @photo.save
-          @photo.tag_list_temp.update_attributes(tag_list_temp: format_tag_list_temp @photo.tag_list_temp)
+          @photo.tag_list_temp.update_attributes = format_tag_list_temp @photo.tag_list_temp
+          @photo.tag_list_temp.update_attributes.save!
           if !@photo.tag_list_temp.empty?
             add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
           end
@@ -52,7 +53,8 @@ class PhotosController < ApplicationController
         end
         if tag_list_temp_is_valid? @photo.tag_list_temp
           if @photo.update_attributes(edit_photo_params)
-            @photo.tag_list_temp.update_attributes(tag_list_temp: format_tag_list_temp @photo.tag_list_temp)
+            @photo.tag_list_temp.update_attributes = format_tag_list_temp @photo.tag_list_temp
+            @photo.tag_list_temp.update_attributes.save!
             new_tag_name_list = []
             if !@photo.tag_list_temp.empty?
               new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
