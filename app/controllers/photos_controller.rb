@@ -25,6 +25,7 @@ class PhotosController < ApplicationController
       if tag_list_temp_is_valid? @photo.tag_list_temp
         if @photo.save
           @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
+          add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
           flash.now[:success] = 'New photo uploaded.'
           render 'new'
         else
@@ -38,23 +39,17 @@ class PhotosController < ApplicationController
     end
   end
 
-  def delete
-    if contributor_logged_in?
-      photo = Photo.find(params[:photo_id])
-      if photo.contributor_id == current_contributor.id
-        photo.delete
-        redirect_to contributor_photos_path(current_contributor.id)
-      end
-    end
-  end
-
   def update
     if contributor_logged_in?
       photo = Photo.find(params[:photo_id])
       if photo.contributor_id == current_contributor.id
         @photo = photo
+        old_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
         if @photo.update_attributes(edit_photo_params)
           @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
+          new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
+          delete_tags @photo, old_tag_name_list - new_tag_name_list
+          add_tags @photo, new_tag_name_list - old_tag_name_list
           flash.now[:success] = 'Settings updated.'
           render 'edit'
         else
@@ -65,7 +60,34 @@ class PhotosController < ApplicationController
     end
   end
 
+  def delete
+    if contributor_logged_in?
+      photo = Photo.find(params[:photo_id])
+      if photo.contributor_id == current_contributor.id
+        delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
+        photo.delete
+        redirect_to contributor_photos_path(current_contributor.id)
+      end
+    end
+  end
+
   private
+
+    def add_tags photo, tag_name_list
+      tag_name_list.each do |tag_name|
+        tag = Tag.find_by(name: tag_name)
+        tag = Tag.create(name: tag_name) if tag.nil?
+        Tagger.create(photo_id: photo.id, tag_id: tag.id)
+      end
+    end
+
+    def delete_tags photo, tag_name_list
+      tag_name_list.each do |tag_name|
+        tag = Tag.find_by(name: tag_name)
+        Tagger.find_by(tag_id: tag.id, photo_id: photo.id).delete
+        tag.delete if tag.photos.empty?
+      end
+    end
 
     def tag_list_temp_is_valid? tag_list_temp
       # removing matches the remainder needs to be empty
