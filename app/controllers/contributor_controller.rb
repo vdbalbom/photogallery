@@ -8,14 +8,14 @@ class ContributorController < ApplicationController
 
   def create
     if admin_logged_in?
-      hash = Contributor.last.id + 1234
-      name = "contributor" + hash.to_s
-      login = "contributor" + hash.to_s
-      password = "password" + hash.to_s
-      email = "contributor" + hash.to_s + "@example.com"
-      @contributor = Contributor.create(name: name, login: login, password: password, email: email)
-      flash.now[:success] = 'Contributor created. Hash is: ' + hash.to_s
-      render 'new'
+      @contributor = Contributor.new(new_contributor_params)
+      if @contributor.save
+        flash.now[:success] = "Contributor created: " + @contributor.name
+        render 'new'
+      else
+        flash.now[:danger] = @contributor.errors.full_messages.join("<br>").html_safe
+        render 'new'
+      end
     end
   end
 
@@ -89,6 +89,14 @@ class ContributorController < ApplicationController
                                         :tumblr_link,
                                         :login,
                                         :password)
+  end
+
+  def new_contributor_params
+    params.require(:contributor).permit(:name,
+                                        :email,
+                                        :login,
+                                        :password,
+                                        :password_confirmation)
   end
 
   def change_password_params
