@@ -28,6 +28,13 @@ class ContributorController < ApplicationController
   def delete
     if admin_logged_in?
       @contributor = Contributor.find(params[:contributor_id])
+      @contributor.photos.each do |photo|
+        photo.tags.each do |tag|
+          Tagger.find_by(tag_id: tag.id, photo_id: photo.id).delete
+          tag.delete if tag.photos.empty?
+        end
+        photo.delete
+      end
       @contributor.delete
       redirect_to contributors_path
     end
