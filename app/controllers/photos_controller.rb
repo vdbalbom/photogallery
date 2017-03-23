@@ -24,8 +24,10 @@ class PhotosController < ApplicationController
       @photo.contributor = current_contributor
       if tag_list_temp_is_valid? @photo.tag_list_temp
         if @photo.save
-          @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
-          add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
+          @photo.tag_list_temp.update_attributes(tag_list_temp: format_tag_list_temp @photo.tag_list_temp)
+          if !@photo.tag_list_temp.empty?
+            add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
+          end
           flash.now[:success] = 'New photo uploaded.'
           render 'new'
         else
@@ -44,16 +46,27 @@ class PhotosController < ApplicationController
       photo = Photo.find(params[:photo_id])
       if photo.contributor_id == current_contributor.id
         @photo = photo
-        old_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
-        if @photo.update_attributes(edit_photo_params)
-          @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
-          new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
-          delete_tags @photo, old_tag_name_list - new_tag_name_list
-          add_tags @photo, new_tag_name_list - old_tag_name_list
-          flash.now[:success] = 'Settings updated.'
-          render 'edit'
+        old_tag_name_list = []
+        if !@photo.tag_list_temp.empty?
+          old_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
+        end
+        if tag_list_temp_is_valid? @photo.tag_list_temp
+          if @photo.update_attributes(edit_photo_params)
+            @photo.tag_list_temp.update_attributes(tag_list_temp: format_tag_list_temp @photo.tag_list_temp)
+            new_tag_name_list = []
+            if !@photo.tag_list_temp.empty?
+              new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
+            end
+            delete_tags @photo, old_tag_name_list - new_tag_name_list
+            add_tags @photo, new_tag_name_list - old_tag_name_list
+            flash.now[:success] = 'Settings updated.'
+            render 'edit'
+          else
+            flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
+            render 'edit'
+          end
         else
-          flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
+          flash.now[:danger] = "Tag list is invalid."
           render 'edit'
         end
       end
@@ -64,7 +77,9 @@ class PhotosController < ApplicationController
     if contributor_logged_in?
       photo = Photo.find(params[:photo_id])
       if photo.contributor_id == current_contributor.id
-        delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
+        if !photo.tag_list_temp.empty?
+          delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
+        end
         photo.delete
         redirect_to contributor_photos_path(current_contributor.id)
       end
