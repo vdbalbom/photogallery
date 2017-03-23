@@ -43,31 +43,46 @@ $ sudo apt-get install make
 ```
 $ git clone https://github.com/vdbalbom/photogallery.git
 ```
-#### To Run
+
+##### Get into the project file
 ```
-$ make run
+$ cd /photogallery
 ```
 
-#### To run detached
-```
-$ make run-detached
-```
-
-#### To get inside the container
+##### Get inside the container and configure admin
 ```
 $ make inside-container
+$ rails c
+$ Admin.create(login: "admin", password: "admin", site_title: "Photo Gallery")
+$ exit
+$ exit
 ```
 
-#### To test
+## Test
 ```
 $ make test-photogallery
 ```
 
+## Run
+
+##### To run
+```
+$ make run
+```
+
+### or
+
+##### To run detached
+```
+$ make run-detached
+```
+
 ## Info
 
+- Run on **port 80**.
 - To admin login go to **/admin**.
 - To contributor login go to **/login**.
-- By default admin has **login: admin** and **password: admin**.
+- By default installation admin has **login: admin** and **password: admin**.
 
 #### More info
 
