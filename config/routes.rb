@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   get 'contributor/change_password'
   patch 'contributor/change_password', to: 'contributor#update_password'
 
+  get 'admin/add_contributor', to: 'contributor#new', as: 'new_contributor'
+  post 'admin/add_contributor', to: 'contributor#create'
+  patch 'admin/add_contributor', to: 'contributor#create'
+  get 'admin/delete_contributor/:contributor_id', to: 'contributor#remove',
+                                                     as: 'remove_contributor'
+  delete 'admin/delete_contributor/:contributor_id', to: 'contributor#delete'
+
   get '/login', to: 'contributor_session#new'
   post '/login', to: 'contributor_session#create'
   patch '/login', to: 'contributor_session#create'

@@ -1,4 +1,38 @@
 class ContributorController < ApplicationController
+
+  def new
+    if admin_logged_in?
+      @contributor = Contributor.new
+    end
+  end
+
+  def create
+    if admin_logged_in?
+      hash = Contributor.last.id + 1234
+      name = "contributor" + hash.to_s
+      login = "contributor" + hash.to_s
+      password = "password" + hash.to_s
+      email = "contributor" + hash.to_s + "@example.com"
+      @contributor = Contributor.create(name: name, login: login, password: password, email: email)
+      flash.now[:success] = 'Contributor created. Hash is: ' + hash.to_s
+      render 'new'
+    end
+  end
+
+  def remove
+    if admin_logged_in?
+      @contributor = Contributor.find(params[:contributor_id])
+    end
+  end
+
+  def delete
+    if admin_logged_in?
+      @contributor = Contributor.find(params[:contributor_id])
+      @contributor.delete
+      redirect_to contributors_path
+    end
+  end
+
   def settings
     if contributor_logged_in?
       @contributor = current_contributor

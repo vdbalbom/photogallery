@@ -5,6 +5,9 @@
         <div>
           <div>
             <h3> <%= link_to contributor.name, contributor_photos_path(contributor.id) %> </h3>
+            <% if admin_logged_in? %>
+              <%= link_to "Delete", remove_contributor_path(contributor.id) %>
+            <% end %>
           </div>
             <div> <%= contributor.description %> </div>
             <div> <%= contributor.email %> </div>
