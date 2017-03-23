@@ -1,23 +1,23 @@
 run:
 	docker-compose stop && \
 	docker-compose rm && \
-	docker-compose build nginx photoblog && \
+	docker-compose build nginx photogallery && \
 	docker-compose run --service-ports nginx
 
 run-detached:
 	docker-compose stop && \
   docker-compose rm && \
-  docker-compose build nginx photoblog && \
+  docker-compose build nginx photogallery && \
   docker-compose run -d --service-ports nginx
 
 inside-container:
 	docker-compose stop && \
 	docker-compose rm && \
-	docker-compose build photoblog && \
-	docker-compose run --rm photoblog bash
+	docker-compose build photogallery && \
+	docker-compose run --rm photogallery bash
 
-test-photoblog:
+test-photogallery:
 	docker-compose stop &&\
 	docker-compose rm && \
-	docker-compose build test-photoblog && \
-	docker-compose run --rm test-photoblog
+	docker-compose build test-photogallery && \
+	docker-compose run --rm test-photogallery

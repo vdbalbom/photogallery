@@ -1,16 +1,16 @@
 version: '2'
 services:
-  photoblog:
+  photogallery:
     build: .
-    command: bash -c "rm -f /photoblog/tmp/pids/server.pid || true && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f /photogallery/tmp/pids/server.pid || true && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/photoblog
+      - .:/photogallery
 
-  test-photoblog:
+  test-photogallery:
     build: .
     command: bundle exec rails t
     volumes:
-      - .:/photoblog
+      - .:/photogallery
 
   nginx:
     image: nginx
@@ -19,6 +19,6 @@ services:
     ports:
       - 80:80
     depends_on:
-      - photoblog
+      - photogallery
     links:
-      - photoblog:photoblog
+      - photogallery:photogallery
