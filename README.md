@@ -41,7 +41,7 @@ $ sudo apt-get install make
 
 ##### Clone this repository
 ```
-$ git clone
+$ git clone https://github.com/vdbalbom/photogallery.git
 ```
 #### To Run
 ```
