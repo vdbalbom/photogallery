@@ -1,16 +1,16 @@
 version: '2'
 services:
-  typeinstant:
+  photoblog:
     build: .
-    command: bash -c "rm -f /typeinstant-sergio/tmp/pids/server.pid || true && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f /photoblog/tmp/pids/server.pid || true && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/typeinstant-sergio
+      - .:/photoblog
 
-  test-typeinstant:
+  test-photoblog:
     build: .
     command: bundle exec rails t
     volumes:
-      - .:/typeinstant-sergio
+      - .:/photoblog
 
   nginx:
     image: nginx
@@ -19,6 +19,6 @@ services:
     ports:
       - 80:80
     depends_on:
-      - typeinstant
+      - photoblog
     links:
-      - typeinstant:typeinstant
+      - photoblog:photoblog
