@@ -6,6 +6,9 @@
         <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
       <% end %>
     <% end %>
+    <% if admin_logged_in? %>
+      <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
+    <% end %>
   </div>
   <div>
     <%= image_tag @photo.image.url(:original) %>
