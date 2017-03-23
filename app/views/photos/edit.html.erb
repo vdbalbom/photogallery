@@ -3,6 +3,11 @@
     <div>
       <div> <%= image_tag @photo.image.url(:big_square) %> </div>
       <div> <%= @photo.title %> </div>
+      <div>
+        <% @photo.tags.each do |tag| %>
+          <%= link_to('#' + tag.name.remove(' '), tag_photos_path(tag.id)) %>
+        <% end %>
+      </div>
       <div> <%= @photo.description %> </div>
     </div>
 
@@ -16,7 +21,9 @@
           <%= f.label :description %>
           <%= f.text_field :description, class: 'form-control' %>
 
-          <%= f.label :tag_list_temp %>
+          <%= f.label :tag_list_temp, "Tag List: " %>
+          <br> Separate tags using '#'.
+          <br> P.s.: Needless spaces will be ignored.
           <%= f.text_field :tag_list_temp, class: 'form-control' %>
 
           <%= f.submit "Update", class: "btn btn-primary" %>
