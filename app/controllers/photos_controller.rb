@@ -33,6 +33,7 @@ class PhotosController < ApplicationController
         end
       else
         flash.now[:danger] = "Tag list is invalid."
+        render 'new'
       end
     end
   end
