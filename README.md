@@ -6,7 +6,7 @@
 
 ## Install
 
-##### Requirements (and how to intall on **Ubuntu 16.04**)
+##### Requirements (and how to install them on **Ubuntu 16.04**)
 
 - **git**
 ```shell
