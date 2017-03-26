@@ -6,7 +6,7 @@ class GalleryController < ApplicationController
 
   def contributor_photos
     @contributor = Contributor.find(params[:contributor_id])
-    @tags = Contributor.find(params[:contributor_id]).tags
+    @tags = Contributor.find(params[:contributor_id]).tags.uniq
     @photos = Contributor.find(params[:contributor_id]).photos
   end
 
