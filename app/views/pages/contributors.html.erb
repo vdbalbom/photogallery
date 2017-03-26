@@ -1,21 +1,25 @@
-<ul class="contributors">
   <% @contributors.each do |contributor| %>
-      <div>
-        <%= image_tag contributor.profile_picture.url(:thumb) %>
-        <div>
-          <div>
-            <h3> <%= link_to contributor.name, contributor_photos_path(contributor.id) %> </h3>
-            <% if admin_logged_in? %>
-              <%= link_to "Delete", remove_contributor_path(contributor.id) %>
-            <% end %>
+      <div class="contributor-box-container">
+        <div class="contributor-box rounded-corners">
+          <div class="name-delete-profile-picture-social-media-box">
+              <div class="profile-picture-box"> <%= image_tag contributor.profile_picture.url(:thumb),  class: "profile-picture" %> </div>
+            <div class= social-media-icon-boxes-container>
+              <div class="social-media-icon-box"> <%= link_to image_tag('icons/facebook-icon.png', class: "social-media-icon circle"), contributor.facebook_link, target: :_blank %> </div>
+              <div class="social-media-icon-box"> <%= link_to image_tag('icons/instagram-icon.png', class: "social-media-icon rounded-corners"), contributor.instagram_link, target: :_blank %> </div>
+              <div class="social-media-icon-box"> <%= link_to image_tag('icons/tumblr-icon.png', class: "social-media-icon circle"), contributor.tumblr_link, target: :_blank %> </div>
+            </div>
+            <div class="name-delete-box">
+              <%= link_to contributor.name, contributor_photos_path(contributor.id) %>
+              <div class="delete-icon"><%= link_to "Delete", remove_contributor_path(contributor.id) if admin_logged_in? %> </div>
+            </div>
           </div>
-            <div> <%= contributor.description %> </div>
-            <div> <%= contributor.email %> </div>
-            <div> <%= contributor.facebook_link %> </div>
-            <div> <%= contributor.instagram_link %> </div>
-            <div> <%= contributor.tumblr_link %> </div>
-            <br>
+          <div class="description-box">
+            <div> "<%= contributor.description %>" </div>
+          </div>
+
+          <div class="email-box">
+            <b>Email:</b> <u><%= contributor.email %></u>
+          </div>
         </div>
       </div>
   <% end %>
-</ul>

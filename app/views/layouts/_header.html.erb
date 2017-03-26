@@ -1,9 +1,9 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to site_title, root_path, id: "logo" %>
+<header class= "header-container">
+  <div class = "header-content-container">
+    <%= link_to site_title, root_path, class: "title", id: "logo" %>
+
     <nav>
       <ul class="nav navbar-nav navbar-right">
-
         <li><%= link_to "Home",  root_path %></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"> Gallery </a>
@@ -42,7 +42,7 @@
             </ul>
           </li>
         <% end %>
-
     </nav>
+    
   </div>
 </header>
