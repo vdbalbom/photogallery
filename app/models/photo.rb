@@ -8,8 +8,8 @@ class Photo < ApplicationRecord
 
   validates :image, presence: true
   has_attached_file :image,
-                    :styles => { :thumb => "100x100#",
-                                 :big_square => "200x200#"}
+                    :styles => { :thumb => "200x200#",
+                                 :big_square => "400x400#"}
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
   validates_attachment_size :image, :in => 0.megabytes..2.megabytes
 
