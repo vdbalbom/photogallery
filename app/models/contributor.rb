@@ -1,5 +1,6 @@
 class Contributor < ApplicationRecord
   has_many :photos
+  has_many :tags, through: :photos
 
   validates :login, presence: true, uniqueness: true, length: { minimum: 5, maximum: 20 }
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }

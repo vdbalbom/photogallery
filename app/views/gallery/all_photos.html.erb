@@ -1,5 +1,5 @@
-<h1>
-  All photos
-</h1>
-
-<%= render 'gallery/list_photos' %>
+<h1 class="title"> All photos </h1>
+<%= render 'layouts/list_photos' %>
+<h1 class="title"> Recent Tags </h1>
+<%= render 'layouts/list_tags' %>
+<%= link_to "see more...", all_tags_path %>

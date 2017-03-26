@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
   get '/contributors', to: 'pages#contributors'
+  get '/all_tags', to: 'pages#tags'
 
   get 'admin/site_settings'
   patch 'admin/site_settings', to: 'admin#update_site'

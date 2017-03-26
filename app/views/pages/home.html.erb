@@ -1,4 +1,20 @@
-<div>
+<div class="about-container">
   <h1 class="title"> About </h1>
-  <div class="about-container-description"> <%= site_description %> </div>
+  <div class="about-container"> <%= site_description %> </div>
+</div>
+
+<div class="recent-container">
+  <h1 class="title"> Recent Uploaded </h1>
+  <div class="photos-bloc">
+    <%= render 'layouts/list_photos' %>
+  </div>
+  <%= link_to "see more...", gallery_photos_path %>
+</div>
+
+<div class="recent-container">
+  <h1 class="title"> Recent Tags </h1>
+  <div class="tags-bloc">
+    <%= render 'layouts/list_tags' %>
+  </div>
+  <%= link_to "see more...", all_tags_path %>
 </div>

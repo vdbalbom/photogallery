@@ -49,13 +49,9 @@ $ git clone https://github.com/vdbalbom/photogallery.git
 $ cd /photogallery
 ```
 
-##### Get inside the container and configure admin
+##### To inside the container
 ```
 $ make inside-container
-$ rails c
-$ Admin.create(login: "admin", password: "admin", site_title: "Photo Gallery")
-$ exit
-$ exit
 ```
 
 ## Test
@@ -83,6 +79,10 @@ $ make run-detached
 - To admin login go to **/admin**.
 - To contributor login go to **/login**.
 - By default installation admin has **login: admin** and **password: admin**.
+- Sample contributors:
+  - login: **smartpig**, password: **12345**
+  - login: **hipstercat**, password: **12345**
+  - login: **happydog**, password: **12345**
 
 #### More info
 

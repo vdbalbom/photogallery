@@ -1,3 +1,4 @@
+<div class="center">
 <% if !@photo.nil? %>
   <div>
     <% if contributor_logged_in? %>
@@ -11,10 +12,10 @@
     <% end %>
   </div>
   <div>
-    <%= image_tag @photo.image.url(:original) %>
+    <%= image_tag @photo.image.url(:original), class: "photo-show" %>
     <div>
       <div>
-        <h3> <%= @photo.title %> </h3>
+        <h3 class="title"> <%= @photo.title %> </h3>
       </div>
       <div>
         <% @photo.tags.each do |tag| %>
@@ -28,3 +29,4 @@
 <% else %>
 Photo does not exist.
 <% end %>
+</div>

@@ -1,10 +1,12 @@
 class GalleryController < ApplicationController
   def all_photos
+    @tags = Tag.last(10).reverse
     @photos = Photo.all
   end
 
   def contributor_photos
     @contributor = Contributor.find(params[:contributor_id])
+    @tags = Contributor.find(params[:contributor_id]).tags
     @photos = Contributor.find(params[:contributor_id]).photos
   end
 

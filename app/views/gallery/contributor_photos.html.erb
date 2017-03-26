@@ -1,6 +1,5 @@
-<h1>
-  Photos by
-  <%= @contributor.name %>
-</h1>
+<h1 class="title"> Photos by <%= @contributor.name %> </h1>
 
-<%= render 'gallery/list_photos' %>
+<%= render 'layouts/list_photos' %>
+<h1 class="title"> <%= @contributor.name + '\'s Tags' %> </h1>
+<%= render 'layouts/list_tags_contributor' %>
