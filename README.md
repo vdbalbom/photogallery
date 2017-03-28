@@ -39,27 +39,17 @@ $ sudo apt-get update
 $ sudo apt-get install make
 ```
 
-##### Clone this repository
+### Clone this repository
 ```
 $ git clone https://github.com/vdbalbom/photogallery.git
 ```
 
-##### Get into the project file
+### Get into the project file
 ```
 $ cd /photogallery
 ```
 
-##### To inside the container
-```
-$ make inside-container
-```
-
-## Test
-```
-$ make test-photogallery
-```
-
-## Run
+### Run
 
 ##### To run
 ```
@@ -71,6 +61,16 @@ $ make run
 ##### To run detached
 ```
 $ make run-detached
+```
+
+### To test
+```
+$ make test-photogallery
+```
+
+### To get inside the container
+```
+$ make inside-container
 ```
 
 ## Info
