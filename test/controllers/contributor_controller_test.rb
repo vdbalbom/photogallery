@@ -11,4 +11,14 @@ class ContributorControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get new" do
+    get admin_add_contributor_url
+    assert_response :success
+  end
+
+  test "should get remove" do
+    get remove_contributor_path(contributors(:one).id)
+    assert_response :success
+  end
+
 end

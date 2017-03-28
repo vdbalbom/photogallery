@@ -1,19 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  login: MyString
-  name: MyString
-  description: MyString
-  email: MyString
-  facebook_link: MyString
-  instagram_link: MyString
-  tumblr_link: MyString
-
-two:
-  login: MyString
-  name: MyString
-  description: MyString
-  email: MyString
-  facebook_link: MyString
-  instagram_link: MyString
-  tumblr_link: MyString
+  login: contributor1
+  name: contributor 1
+  description: this is the contributor 1
+  email: contributor1@email.com
+  facebook_link: facebook.com/contributor1
+  instagram_link: instagram.com/contributor1
+  tumblr_link: contributor1.tumblr.com

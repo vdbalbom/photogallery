@@ -6,8 +6,8 @@ class AdminControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get change_password" do
-    get admin_change_password_url
+  test "should get site settings" do
+    get admin_site_settings_url
     assert_response :success
   end
 

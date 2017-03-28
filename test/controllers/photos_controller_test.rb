@@ -1,18 +1,18 @@
 require 'test_helper'
 
 class PhotosControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get photos_show_url
-    assert_response :success
-  end
+  # test "should get show" do
+  #   get show_photo_path(photos(:one).id)
+  #   assert_response :success
+  # end
 
   test "should get edit" do
-    get photos_edit_url
+    get edit_photo_path(photos(:one).id)
     assert_response :success
   end
 
   test "should get new" do
-    get photos_new_url
+    get upload_photo_path
     assert_response :success
   end
 
