@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def tags
-    @tags = Tag.all
+    @tags = Tag.all.reverse
   end
 
   def contributors
