@@ -2,7 +2,7 @@
       <div class="contributor-box-container">
         <div class="contributor-box rounded-corners">
           <div class="name-delete-profile-picture-social-media-box">
-              <div class="profile-picture-box"> <%= image_tag contributor.profile_picture.url(:thumb),  class: "profile-picture" %> </div>
+              <div class="profile-picture-box"> <%= link_to (image_tag contributor.profile_picture.url(:thumb),  class: "profile-picture"), contributor_photos_path(contributor.id) %> </div>
             <div class= social-media-icon-boxes-container>
               <div class="social-media-icon-box"> <%= link_to image_tag('icons/facebook-icon.png', class: "social-media-icon circle"), contributor.facebook_link, target: :_blank %> </div>
               <div class="social-media-icon-box"> <%= link_to image_tag('icons/instagram-icon.png', class: "social-media-icon rounded-corners"), contributor.instagram_link, target: :_blank %> </div>
