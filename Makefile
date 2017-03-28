@@ -11,8 +11,6 @@ run-detached:
   docker-compose run -d --service-ports nginx
 
 inside-container:
-	docker-compose stop && \
-	docker-compose rm && \
 	docker-compose build photogallery && \
 	docker-compose run --rm photogallery bash
 
