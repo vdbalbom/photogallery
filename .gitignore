@@ -16,6 +16,7 @@
 /public/system
 
 # Ignore ad sense
+app/views/layouts/_ad_sense.html.erb
 
 # Ignore all logfiles and tempfiles.
 /log/*
