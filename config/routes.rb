@@ -52,12 +52,12 @@ Rails.application.routes.draw do
   get 'gallery/photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
   patch 'gallery/photos/:photo_id/edit', to: 'photos#update'
 
-  get 'contributor/create_post', to: 'post#new', as: 'new_post'
-  post 'contributor/create_post', to: 'post#create'
-  patch 'contributor/create_post', to: 'post#create'
-  get 'posts/:post_id', to: 'post#show', as: 'show_post'
+  get 'contributor/create_post', to: 'posts#new', as: 'new_post'
+  post 'contributor/create_post', to: 'posts#create'
+  patch 'contributor/create_post', to: 'posts#create'
+  get 'posts/:post_id', to: 'posts#show', as: 'show_post'
 
-  get 'post/edit'
+  get 'posts/edit'
 
 
 end

@@ -1,4 +1,4 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
   def new
     if contributor_logged_in?
       @post = Post.new

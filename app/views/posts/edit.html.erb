@@ -1,0 +1,22 @@
+<% if contributor_logged_in? %>
+  <% if current_contributor.id == @post.contributor_id %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@post, url: new_post_path) do |f| %>
+
+          <%= f.label :title, "* Title" %>
+          <%= f.text_field :title, class: 'form-control' %>
+
+          <%= f.label :content %>
+          <%= f.bootsy_area :content, class: 'form-control' %>
+
+          <%= f.submit "Create Post", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    This is not your post.
+  <% end %>
+<% else %>
+  This is a contributor area.
+<% end %>
