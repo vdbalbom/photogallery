@@ -11,4 +11,8 @@ class PagesController < ApplicationController
   def contributors
     @contributors = Contributor.all
   end
+
+  def posts
+    @posts = Post.all
+  end
 end

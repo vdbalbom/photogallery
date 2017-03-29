@@ -1,6 +1,6 @@
-<h1 class= "title center" > <%= @tag.name %> by <%= @contributor.name %> </h1>
-<div class="center"> See more about <%= link_to  @tag.name, tag_photos_path(@tag.id) %>! </div>
-<div class="center"> See more by <%= link_to  @contributor.name, contributor_photos_path(@contributor.id) %>! </div>
+<h1 class= "title" > <%= @tag.name %> by <%= @contributor.name %> </h1>
+<div> See more about <%= link_to  @tag.name, tag_photos_path(@tag.id) %>! </div>
+<div> See more by <%= link_to  @contributor.name, contributor_photos_path(@contributor.id) %>! </div>
 
 
-<div class="center"> <%= render 'layouts/list_photos' %> </div>
+<div> <%= render 'layouts/list_photos' %> </div>

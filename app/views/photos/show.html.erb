@@ -1,32 +1,32 @@
-<div class="center">
-<% if !@photo.nil? %>
-  <div>
-    <% if contributor_logged_in? %>
-      <% if current_contributor.id == @photo.contributor.id %>
-        <%= link_to "Edit", edit_photo_path(@photo.id) %>
+<div>
+  <% if !@photo.nil? %>
+    <div>
+      <% if contributor_logged_in? %>
+        <% if current_contributor.id == @photo.contributor.id %>
+          <%= link_to "Edit", edit_photo_path(@photo.id) %>
+          <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
+        <% end %>
+      <% end %>
+      <% if admin_logged_in? %>
         <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
       <% end %>
-    <% end %>
-    <% if admin_logged_in? %>
-      <%= link_to "Delete", show_photo_path(@photo.id), method: "delete" %>
-    <% end %>
-  </div>
-  <div>
-    <%= image_tag @photo.image.url(:original), class: "photo-show" %>
-    <div>
-      <div>
-        <h3 class="title"> <%= @photo.title %> </h3>
-      </div>
-      <div>
-        <% @photo.tags.each do |tag| %>
-          <%= link_to "#" + tag.name, tag_photos_path(tag.id)%>
-        <% end %>
-      </div>
-        <div> <%= @photo.description %> </div>
-        Posted at <%= @photo.created_at.to_formatted_s(:long_ordinal) %> by <%= link_to @photo.contributor.name, contributor_photos_path(@photo.contributor.id) %>
     </div>
-  </div>
-<% else %>
-Photo does not exist.
-<% end %>
+    <div>
+      <%= image_tag @photo.image.url(:original), class: "photo-show" %>
+      <div>
+        <div>
+          <h3 class="title"> <%= @photo.title %> </h3>
+        </div>
+        <div>
+          <% @photo.tags.each do |tag| %>
+            <%= link_to "#" + tag.name, tag_photos_path(tag.id)%>
+          <% end %>
+        </div>
+          <div> <%= @photo.description %> </div>
+          Posted at <%= @photo.created_at.to_formatted_s(:long_ordinal) %> by <%= link_to @photo.contributor.name, contributor_photos_path(@photo.contributor.id) %>
+      </div>
+    </div>
+  <% else %>
+  Photo does not exist.
+  <% end %>
 </div>

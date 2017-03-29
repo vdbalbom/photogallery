@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   root 'pages#home'
   get '/contributors', to: 'pages#contributors'
+  get '/posts', to: 'pages#posts'
   get '/all_tags', to: 'pages#tags'
 
   get 'admin/site_settings'
@@ -49,4 +51,13 @@ Rails.application.routes.draw do
   delete 'gallery/photos/:photo_id', to: 'photos#delete'
   get 'gallery/photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
   patch 'gallery/photos/:photo_id/edit', to: 'photos#update'
+
+  get 'contributor/create_post', to: 'post#new', as: 'new_post'
+  post 'contributor/create_post', to: 'post#create'
+  patch 'contributor/create_post', to: 'post#create'
+  get 'posts/:post_id', to: 'post#show', as: 'show_post'
+
+  get 'post/edit'
+
+
 end

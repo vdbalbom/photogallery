@@ -5,6 +5,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",  root_path %></li>
+
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"> Gallery </a>
           <ul class="dropdown-menu">
@@ -15,6 +16,18 @@
             <li><%= link_to "All Contributors", gallery_photos_path %></li>
           </ul>
         </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"> Posts </a>
+          <ul class="dropdown-menu">
+            <% all_contributors.each do |contributor| %>
+              <li><%= link_to contributor.name, '#' %></li>
+            <% end %>
+            <li class="divider"></li>
+            <li><%= link_to "All Contributors", posts_path %></li>
+          </ul>
+        </li>
+
         <li><%= link_to "Contributors", contributors_path %></li>
 
         <% if contributor_logged_in? %>
@@ -23,6 +36,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Settings", contributor_settings_path %></li>
             <li><%= link_to "Upload Photo", upload_photo_path %></li>
+            <li><%= link_to "Create Post", new_post_path %></li>
             <li><%= link_to "Change Password", contributor_change_password_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Logout", login_path, method: "delete" %></li>
@@ -43,6 +57,6 @@
           </li>
         <% end %>
     </nav>
-    
+
   </div>
 </header>

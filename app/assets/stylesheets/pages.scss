@@ -1,4 +1,45 @@
 @import "custom.scss";
+/* posts */
+
+.post-container {
+  margin-bottom: 50px;
+}
+
+.post-title {
+  @extend .title;
+  @extend .center;
+  text-align: center;
+  font-size: 35px;
+  width: 80%;
+  border-bottom: solid 2px;
+  border-color: #c1dad6;
+}
+
+.post-content {
+  @extend .center;
+  margin-top: 20px;
+  width: 80%;
+  height: auto;
+  color: #343e41;
+}
+
+.post-date {
+  @extend .center;
+  border-top: solid 2px;
+  border-color: #c1dad6;
+  margin-top: 30px;
+  text-align: right;
+  width: 80%;
+  color: #343e41;
+}
+
+.post-contributor {
+  @extend .center;
+  text-align: right;
+  width: 80%;
+  color: #343e41;
+}
+
 
 /* contributors */
 
@@ -17,7 +58,6 @@
 .profile-picture {
   @extend .circle;
   @extend .thumb;
-  @extend .center;
   border: solid 4px;
   border-color: #c1dad6;
   margin-left: 5%;
