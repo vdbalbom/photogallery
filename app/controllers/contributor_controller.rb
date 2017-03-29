@@ -19,10 +19,8 @@ class ContributorController < ApplicationController
     end
   end
 
-  def remove
-    if admin_logged_in?
-      @contributor = Contributor.find(params[:contributor_id])
-    end
+  def show
+    @contributor = Contributor.find(params[:contributor_id])
   end
 
   def delete

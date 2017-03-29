@@ -10,7 +10,6 @@
             </div>
             <div class="name-delete-box">
               <%= link_to contributor.name, contributor_photos_path(contributor.id) %>
-              <div class="delete-icon"><%= link_to "Delete", remove_contributor_path(contributor.id) if admin_logged_in? %> </div>
             </div>
           </div>
           <div class="description-box">

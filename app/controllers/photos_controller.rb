@@ -90,7 +90,7 @@ class PhotosController < ApplicationController
       photo = Photo.find(params[:photo_id])
       delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
       photo.delete
-      redirect_to gallery_photos_path
+      redirect_to photos_path
     end
   end
 

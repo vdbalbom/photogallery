@@ -24,38 +24,38 @@ Rails.application.routes.draw do
   get 'admin/add_contributor', to: 'contributor#new', as: 'new_contributor'
   post 'admin/add_contributor', to: 'contributor#create'
   patch 'admin/add_contributor', to: 'contributor#create'
-  get 'admin/delete_contributor/:contributor_id', to: 'contributor#remove',
-                                                     as: 'remove_contributor'
-  delete 'admin/delete_contributor/:contributor_id', to: 'contributor#delete'
 
   get '/login', to: 'contributor_session#new'
   post '/login', to: 'contributor_session#create'
   patch '/login', to: 'contributor_session#create'
   delete '/login', to: 'contributor_session#destroy'
 
-  get 'gallery/photos', to: 'gallery#all_photos'
-  get 'gallery/contributors/:contributor_id/photos',
+  get '/photos', to: 'gallery#all_photos'
+  get '/contributors/:contributor_id/photos',
        to: 'gallery#contributor_photos',
        as: 'contributor_photos'
-  get 'gallery/tags/:tag_id/photos',
+  get '/tags/:tag_id/photos',
        to: 'gallery#tag_photos',
        as: 'tag_photos'
-  get 'gallery/contributors/:contributor_id/tags/:tag_id/photos',
+  get '/contributors/:contributor_id/tags/:tag_id/photos',
        to: 'gallery#contributor_tag_photos',
        as: 'contributor_tag_photos'
 
   get 'contributor/upload_photo', to: 'photos#new', as: 'upload_photo'
   post 'contributor/upload_photo', to: 'photos#create'
   patch 'contributor/upload_photo', to: 'photos#create'
-  get 'gallery/photos/:photo_id', to: 'photos#show', as: 'show_photo'
-  delete 'gallery/photos/:photo_id', to: 'photos#delete'
-  get 'gallery/photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
-  patch 'gallery/photos/:photo_id/edit', to: 'photos#update'
+  get 'photos/:photo_id', to: 'photos#show', as: 'show_photo'
+  delete 'photos/:photo_id', to: 'photos#delete'
+  get 'photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
+  patch 'photos/:photo_id/edit', to: 'photos#update'
 
   get 'contributor/create_post', to: 'posts#new', as: 'new_post'
   post 'contributor/create_post', to: 'posts#create'
   patch 'contributor/create_post', to: 'posts#create'
   get 'posts/:post_id', to: 'posts#show', as: 'show_post'
+
+  get 'contributors/:contributor_id', to: 'contributor#show'
+  delete 'contributors/:contributor_id', to: 'contributor#delete', as: 'delete_contributor'
 
   get 'posts/edit'
 
