@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ContributorControllerTest < ActionDispatch::IntegrationTest
+class ContributorsControllerTest < ActionDispatch::IntegrationTest
   test "should get settings" do
     get contributor_settings_url
     assert_response :success

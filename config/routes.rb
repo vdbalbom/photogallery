@@ -16,14 +16,14 @@ Rails.application.routes.draw do
   post '/admin', to: 'admin_session#create'
   delete '/admin', to: 'admin_session#destroy'
 
-  get 'contributor/settings'
-  patch 'contributor/settings', to: 'contributor#update_settings'
-  get 'contributor/change_password'
-  patch 'contributor/change_password', to: 'contributor#update_password'
+  get 'contributor/settings', to: 'contributors#settings'
+  patch 'contributor/settings', to: 'contributors#update_settings'
+  get 'contributor/change_password', to: 'contributors#settings'
+  patch 'contributor/change_password', to: 'contributors#update_password'
 
-  get 'admin/add_contributor', to: 'contributor#new', as: 'new_contributor'
-  post 'admin/add_contributor', to: 'contributor#create'
-  patch 'admin/add_contributor', to: 'contributor#create'
+  get 'admin/add_contributor', to: 'contributors#new', as: 'new_contributor'
+  post 'admin/add_contributor', to: 'contributors#create'
+  patch 'admin/add_contributor', to: 'contributors#create'
 
   get '/login', to: 'contributor_session#new'
   post '/login', to: 'contributor_session#create'
@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   patch 'contributor/create_post', to: 'posts#create'
   get 'posts/:post_id', to: 'posts#show', as: 'show_post'
 
-  get 'contributors/:contributor_id', to: 'contributor#show'
-  delete 'contributors/:contributor_id', to: 'contributor#delete', as: 'delete_contributor'
+  get 'contributors/:contributor_id', to: 'contributors#show', as: "show_contributor"
+  delete 'contributors/:contributor_id', to: 'contributors#delete', as: 'delete_contributor'
 
   get 'posts/edit'
 

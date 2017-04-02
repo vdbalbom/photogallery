@@ -1,4 +1,4 @@
-class ContributorController < ApplicationController
+class ContributorsController < ApplicationController
 
   def new
     if admin_logged_in?

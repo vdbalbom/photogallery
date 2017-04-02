@@ -1,0 +1,26 @@
+<div class= social-media-icon-boxes-container>
+  <div class="social-media-icon-box"> <%= link_to image_tag('icons/facebook-icon.png', class: "social-media-icon circle"), @contributor.facebook_link, target: :_blank %> </div>
+  <div class="social-media-icon-box"> <%= link_to image_tag('icons/instagram-icon.png', class: "social-media-icon rounded-corners"), @contributor.instagram_link, target: :_blank %> </div>
+  <div class="social-media-icon-box"> <%= link_to image_tag('icons/tumblr-icon.png', class: "social-media-icon circle"), @contributor.tumblr_link, target: :_blank %> </div>
+</div>
+<h1 class="title">  <%= @contributor.name %> </h1>
+<div class="delete_contributor">
+  <% if admin_logged_in? %>
+    <%= link_to "Delete", delete_contributor_path(@contributor.id), method: "delete" %>
+  <% end %>
+</div>
+
+<div class="emails-container">
+  <%= @contributor.email %>
+</div>
+
+<div class="description-container">
+  <%= @contributor.description %>
+</div>
+
+<h1 class="title">  Photos </h1>
+[TODO]
+<h1 class="title">  Tags </h1>
+[TODO]
+<h1 class="title">  Posts </h1>
+[TODO]
