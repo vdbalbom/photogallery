@@ -1,5 +1,5 @@
 <div class="list-tag">
   <% @tags.each do |tag| %>
-      <%= link_to tag.name, contributor_tag_photos_path(@contributor.id, tag.id), class: "tag-box" %>
+      <%= link_to tag.name, contributor_and_tag_photos_path(@contributor.id, tag.id), class: "tag-box" %>
   <% end %>
 </div>

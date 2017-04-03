@@ -81,6 +81,10 @@ class ContributorsController < ApplicationController
     end
   end
 
+  def tags
+    @contributor = Contributor.find(params[:contributor_id])
+  end
+
   private
 
   def contributor_params

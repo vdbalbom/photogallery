@@ -39,7 +39,10 @@ Rails.application.routes.draw do
        as: 'tag_photos'
   get '/contributors/:contributor_id/tags/:tag_id/photos',
        to: 'gallery#contributor_tag_photos',
-       as: 'contributor_tag_photos'
+       as: 'contributor_and_tag_photos'
+       get '/contributors/:contributor_id/tags',
+            to: 'contributors#tags',
+            as: 'contributor_tags'
 
   get 'contributor/upload_photo', to: 'photos#new', as: 'upload_photo'
   post 'contributor/upload_photo', to: 'photos#create'

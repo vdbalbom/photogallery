@@ -1,3 +1,126 @@
-// Place all the styles related to the contributors controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#contributor-page-container {
+  margin-top: 15px;
+  width: 100%;
+  height: auto;
+}
+
+#contributor-page-profile-photos-container {
+  height: auto;
+  width: 100%;
+  float: left;
+}
+
+#contributor-page-profile-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+#contributor-page-photos-container {
+  width: 50%;
+  height: 100%;
+  float: right;
+  border-left: solid 2px #c1dad6;
+}
+
+#contributor-page-posts-container {
+  margin-top: 10px;
+  border-top: solid 2px #c1dad6;
+  width: 100%;
+  height: 1000px;
+  float: left;
+}
+
+#contributor-page-profile-picture-container {
+  width: 150px;
+  height: 150px;
+  float: left;
+}
+
+#contributor-page-profile-picture {
+  border-radius: 50%;
+  width: 150px;
+  border: solid 3px #c1dad6;
+  float: left inherit;
+}
+
+#contributor-page-contributor-name {
+  margin-top: 30px;
+  text-align: left;
+  float: left;
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 30px;
+  color: #c1dad6;
+}
+
+#contributor-page-contributor-email {
+  text-align: left;
+  float: left;
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  color: #c1dad6;
+}
+
+#contributor-page-socialmedia-container {
+  width: 150px;
+  height: 50px;
+  float: right;
+}
+
+#contributor-page-contributor-description {
+  float: left;
+}
+
+#contributor-page-contributor-tags {
+  margin-right: 10px;
+  float: left;
+  font-size: 25px;
+}
+
+#contributor-pages-photos-thumb-container {
+  margin-left: 20px;
+}
+
+.contributor-page-tag {
+  font-color: #343e41;
+  background-color: #c1dad6;
+  border-radius: 20%;
+}
+
+.contributor-page-tag:hover {
+  background-color: transparent;
+  font-color: #c1dad6;
+}
+
+.contributor-page-title {
+  text-indent: 20px;
+  width: 100%;
+  float: left;
+  text-align: left;
+  font-weight: 500;
+  font-size: 30px;
+  color: #c1dad6;
+}
+
+.contributor-page-see-more {
+  float: left;
+  font-color: #343e41;
+}
+
+.contributor-page-see-more:hover {
+  font-color: #c1dad6;
+}
+
+.contributor-page-photo-thumb {
+  width: 120px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.contributor-page-photo-thumb:hover {
+  opacity: 0.3;
+}

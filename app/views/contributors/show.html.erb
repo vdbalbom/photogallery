@@ -1,26 +1,36 @@
-<div class= social-media-icon-boxes-container>
-  <div class="social-media-icon-box"> <%= link_to image_tag('icons/facebook-icon.png', class: "social-media-icon circle"), @contributor.facebook_link, target: :_blank %> </div>
-  <div class="social-media-icon-box"> <%= link_to image_tag('icons/instagram-icon.png', class: "social-media-icon rounded-corners"), @contributor.instagram_link, target: :_blank %> </div>
-  <div class="social-media-icon-box"> <%= link_to image_tag('icons/tumblr-icon.png', class: "social-media-icon circle"), @contributor.tumblr_link, target: :_blank %> </div>
+<div id="contributor-page-container">
+  <div id="contributor-page-profile-photos-container">
+    <div id="contributor-page-profile-container">
+      <div id="contributor-page-profile-picture-container">
+        <%= image_tag @contributor.profile_picture.url(:thumb), id:"contributor-page-profile-picture" %>
+      </div>
+      <div id="contributor-page-socialmedia-container">
+      </div>
+      <p id="contributor-page-contributor-name"> <%= @contributor.name %> </p>
+      <br>
+      <p id="contributor-page-contributor-email"> Email: <%= @contributor.email%> </p>
+      <p class="contributor-page-title"> About </p>
+      <p id="contributor-page-contributor-description"> "<%= @contributor.description %>" </p>
+      <p class="contributor-page-title"> Tags </p>
+      <p id="contributor-page-contributor-tags">
+        <% recent_contributor_tags.each do |tag| %>
+          <%= link_to tag.name, contributor_and_tag_photos_path(@contributor.id, tag.id), class:"contributor-page-tag" %>
+        <% end  %>
+      </p>
+      <p class="contributor-page-see-more"> <%= link_to "see more...", contributor_tags_path(@contributor.id) %> </p>
+    </div>
+    <div id="contributor-page-photos-container">
+      <p class="contributor-page-title"> Photos </p>
+      <div id="contributor-pages-photos-thumb-container">
+        <% recent_contributor_photos.each do |photo| %>
+          <%= link_to (image_tag photo.image.url(:thumb), class:"contributor-page-photo-thumb"), show_photo_path(photo.id) %>
+        <% end %>
+        <br><br>
+        <p class="contributor-page-see-more"> <%= link_to "see more...", contributor_photos_path(@contributor.id) %> </p>
+      </div>
+    </div>
+  </div>
+  <div id="contributor-page-posts-container">
+    <p class="contributor-page-title"> Posts </p>
+  </div>
 </div>
-<h1 class="title">  <%= @contributor.name %> </h1>
-<div class="delete_contributor">
-  <% if admin_logged_in? %>
-    <%= link_to "Delete", delete_contributor_path(@contributor.id), method: "delete" %>
-  <% end %>
-</div>
-
-<div class="emails-container">
-  <%= @contributor.email %>
-</div>
-
-<div class="description-container">
-  <%= @contributor.description %>
-</div>
-
-<h1 class="title">  Photos </h1>
-[TODO]
-<h1 class="title">  Tags </h1>
-[TODO]
-<h1 class="title">  Posts </h1>
-[TODO]
