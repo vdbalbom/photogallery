@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   root 'pages#home'
-  get '/contributors', to: 'pages#contributors'
+  get '/contributors', to: 'contributors#index'
   get '/posts', to: 'pages#posts'
   get '/all_tags', to: 'pages#tags'
 
