@@ -25,10 +25,6 @@
 
 <div>
   <h1> Recent Posts </h1>
-  <div class="tags-bloc">
-    <% @posts.each do |post| %>
-      <%= render "posts/summarized_post", post: post %>
-    <% end %>
-  </div>
+  <%= render "posts/list_posts", list: @posts, style: "summarized" %>
   <p> <%= link_to "see more...", all_posts_path %> </p>
 </div>
