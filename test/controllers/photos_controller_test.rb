@@ -12,7 +12,7 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get upload_photo_path
+    get new_photo_path
     assert_response :success
   end
 
