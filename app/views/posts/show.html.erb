@@ -1,9 +1,8 @@
 <div class="div-post">
   <p class="post-title"> <%= @post.title %> </p>
-  <p class="post-content"> <%= @post.content.html_safe%> </p>
+  <p class="post-content"> <%= @post.content.html_safe %> </p>
   <p class="post-info">
     <%= "Posted at #{@post.created_at.to_formatted_s(:long_ordinal)} by" %>
     <%= link_to @post.contributor.name, show_contributor_path(@post.contributor.id), class:"post-contributor-link" %>
   </p>
 </div>
-  
