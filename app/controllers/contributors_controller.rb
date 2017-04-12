@@ -1,5 +1,17 @@
 class ContributorsController < ApplicationController
 
+  def index
+    @contributors = Contributor.all
+  end
+
+  def photos
+    @Photos = Contributor.find(params[:contributor_id]).photos
+  end
+
+  def tag_photos
+    @Photos = Contributor.find(params[:contributor_id]).photos & Tag.find(params[:tag_id]).photos
+  end
+
   def new
     if admin_logged_in?
       @contributor = Contributor.new

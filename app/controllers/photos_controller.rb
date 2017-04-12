@@ -94,6 +94,10 @@ class PhotosController < ApplicationController
     end
   end
 
+  def index
+    @Photos = Photo.all
+  end
+
   private
 
     def add_tags photo, tag_name_list
