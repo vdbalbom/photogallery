@@ -1,0 +1,8 @@
+<div class="div-post">
+  <%= link_to post.title, show_post_path(post.id), class:"post-title" %>
+  <p class="post-description"> <%= post.description %> </p>
+  <p class="post-info">
+    <%= "Posted at #{post.created_at.to_formatted_s(:long_ordinal)} by" %>
+    <%= link_to post.contributor.name, show_contributor_path(post.contributor.id), class:"post-contributor-link" %>
+  </p>
+</div>
