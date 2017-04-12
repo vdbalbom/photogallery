@@ -2,9 +2,62 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   root 'pages#home'
-  get '/contributors', to: 'contributors#index'
-  get '/posts', to: 'pages#posts'
-  get '/all_tags', to: 'pages#tags'
+
+  get 'photos',
+        to: 'photos#index',
+        as: 'all_photos'
+  get 'photos/:photo_id/show',
+        to: 'photos#show',
+        as: 'show_photo'
+  get 'photos/:photo_id/edit',
+        to: 'photos#edit',
+        as: 'edit_photo'
+  delete 'photos/:photo_id',
+        to: 'photos#delete'
+  patch 'photos/:photo_id/edit',
+        to: 'photos#update'
+  get 'photos/new',
+        to: 'photos#new',
+        as: 'new_photo'
+  post 'photos/new',
+        to: 'photos#create'
+  patch 'photos/new',
+        to: 'photos#create'
+
+  get '/contributors',
+        to: 'contributors#index'
+  get 'contributors/:contributor_id/photos/',
+        to: 'contributors#photos',
+        as: 'contributor_photos'
+  get 'contributors/:contributor_id/tags/:tag_id/photos/',
+        to: 'contributors#tag_photos',
+        as: 'contributor_tag_photos'
+  get 'contributors/:contributor_id/tags/',
+        to: 'contributors#tags',
+        as: 'contributor_tags'
+
+  get '/tags',
+        to: 'tags#index',
+        as: 'all_tags'
+  get 'tags/:tag_id/photos',
+        to: 'tags#photos',
+        as: 'tag_photos'
+
+  get '/posts',
+        to: 'posts#index',
+        as: 'all_posts'
+  get 'posts/new',
+        to: 'posts#new',
+        as: 'new_post'
+  post 'posts/new',
+        to: 'posts#create'
+  patch 'posts/new',
+        to: 'posts#create'
+  get 'posts/:post_id/show',
+        to: 'posts#show',
+        as: 'show_post'
+  get 'posts/edit'
+
 
   get 'admin/site_settings'
   patch 'admin/site_settings', to: 'admin#update_site'
@@ -30,37 +83,9 @@ Rails.application.routes.draw do
   patch '/login', to: 'contributor_session#create'
   delete '/login', to: 'contributor_session#destroy'
 
-  get '/photos', to: 'gallery#all_photos'
-  get '/contributors/:contributor_id/photos',
-       to: 'gallery#contributor_photos',
-       as: 'contributor_photos'
-  get '/tags/:tag_id/photos',
-       to: 'gallery#tag_photos',
-       as: 'tag_photos'
-  get '/contributors/:contributor_id/tags/:tag_id/photos',
-       to: 'gallery#contributor_tag_photos',
-       as: 'contributor_and_tag_photos'
-       get '/contributors/:contributor_id/tags',
-            to: 'contributors#tags',
-            as: 'contributor_tags'
-
-  get 'contributor/upload_photo', to: 'photos#new', as: 'upload_photo'
-  post 'contributor/upload_photo', to: 'photos#create'
-  patch 'contributor/upload_photo', to: 'photos#create'
-  get 'photos/:photo_id', to: 'photos#show', as: 'show_photo'
-  delete 'photos/:photo_id', to: 'photos#delete'
-  get 'photos/:photo_id/edit', to: 'photos#edit', as: 'edit_photo'
-  patch 'photos/:photo_id/edit', to: 'photos#update'
-
-  get 'contributor/create_post', to: 'posts#new', as: 'new_post'
-  post 'contributor/create_post', to: 'posts#create'
-  patch 'contributor/create_post', to: 'posts#create'
-  get 'posts/:post_id', to: 'posts#show', as: 'show_post'
 
   get 'contributors/:contributor_id', to: 'contributors#show', as: "show_contributor"
   delete 'contributors/:contributor_id', to: 'contributors#delete', as: 'delete_contributor'
-
-  get 'posts/edit'
 
 
 end
