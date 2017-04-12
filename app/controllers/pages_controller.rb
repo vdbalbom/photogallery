@@ -1,18 +1,8 @@
 class PagesController < ApplicationController
   def home
-    @photos = Photo.last(15).reverse
+    @photos = Photo.last(18).reverse
     @tags = Tag.last(10).reverse
+    @posts = Post.last(5).reverse
   end
 
-  def tags
-    @tags = Tag.all.reverse
-  end
-
-  def contributors
-    @contributors = Contributor.all
-  end
-
-  def posts
-    @posts = Post.all
-  end
 end
