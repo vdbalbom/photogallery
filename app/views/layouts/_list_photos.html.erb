@@ -1,5 +1,0 @@
-<div class="list-photo">
-  <% @photos.each do |photo| %>
-      <%= link_to image_tag(photo.image.url(:thumb), class: "miniature"), show_photo_path(photo.id) %>
-  <% end %>
-</div>
