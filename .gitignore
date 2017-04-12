@@ -12,8 +12,9 @@
 /db/development.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore photosgit
+# Ignore photos
 /public/system
+/public/uploads/bootsy
 
 # Ignore ad sense
 app/views/layouts/_ad_sense.html.erb
