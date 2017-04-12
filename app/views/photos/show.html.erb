@@ -12,14 +12,14 @@
       <% end %>
     </div>
     <div>
-      <%= image_tag @photo.image.url(:original), class: "photo-show" %>
+      <%= image_tag @photo.image.url(:original), class: "image" %>
       <div>
         <div>
-          <h3 class="title"> <%= @photo.title %> </h3>
+          <h1> <%= @photo.title %> </h1>
         </div>
         <div>
           <% @photo.tags.each do |tag| %>
-            <%= link_to "#" + tag.name, tag_photos_path(tag.id)%>
+            <%= link_to tag.name, tag_photos_path(tag.id), class: "tag small-tag"%>
           <% end %>
         </div>
           <div> <%= @photo.description %> </div>

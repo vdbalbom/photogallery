@@ -1,7 +1,7 @@
 <% if contributor_logged_in? %>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@photo, url: upload_photo_path) do |f| %>
+      <%= form_for(@photo, url: new_photo_path) do |f| %>
 
         <%= f.label :title, "* Title" %>
         <%= f.text_field :title, class: 'form-control' %>

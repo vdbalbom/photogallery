@@ -9,6 +9,20 @@
 
 /* universal */
 
+p {
+  color: #343e41;
+  font-size: 17px;
+}
+
+a {
+  color: #343e41;
+}
+
+a:hover {
+  color: #c1dad6;
+  text-decoration: none;
+}
+
 body {
   margin-top: 60px;
   background-color: #f5fafa;
@@ -22,39 +36,13 @@ textarea {
   resize: vertical;
 }
 
-a {
-  color: #343e41;
-}
-
-a:hover {
+h1 {
   color: #c1dad6;
-  text-decoration: none;
-}
-
-.center {
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 35px;
 }
 
 .circle {
   border-radius: 50%;
-}
-
-.title {
-  color: #c1dad6;
-}
-
-.thumb {
-  width: 120px;
-  height: 120px;
-}
-
-.miniature {
-  @extend .thumb;
-  margin-top: 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
-  margin-left: 3px;
 }
 
 .list-photo {
@@ -64,23 +52,6 @@ a:hover {
 
 .list-tag {
   font-size: 25px;
-}
-
-.tag-box {
-  margin-top: 3px;
-  margin-right: 3px;
-  margin-bottom: 3px;
-  margin-left: 3px;
-  background-color: #c1dad6;
-  border-radius: 20%;
-}
-
-.tag-box:hover {
-  background-color: transparent;
-}
-
-.miniature:hover{
-  opacity: 0.3;
 }
 
 /* header */
@@ -113,6 +84,7 @@ a:hover {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+  color: #c1dad6;
 }
 
 /* footer */
@@ -159,9 +131,12 @@ input {
 
 /* smartphone */
 @media screen and (max-width: 1000px) {
-  .thumb {
-    width: 200px;
-    height: 200px;
+  h1 {
+    font-size: 50px;
+  }
+
+  p {
+    font-size: 35px;
   }
 }
 

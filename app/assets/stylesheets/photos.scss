@@ -2,16 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.photo-show {
+.image {
   max-width:100%;
   max-height: 500px;
-  width: auto;
-  heigth: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.thumb {
+  width: 120px;
+  height: 120px;
+}
+
+.thumb {
+  width: 115px;
+  height: 115px;
+  margin-top: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+}
+
+.thumb-link:hover{
+  opacity: 0.3;
 }
 
 /* smartphone */
 @media screen and (max-width: 1000px) {
   .photo-show {
     max-height: 900px;
+  }
+
+  .thumb {
+    width: 200px;
+    height: 200px;
   }
 }

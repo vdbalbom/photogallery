@@ -1,3 +1,57 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.div-post {
+  border: dashed 2px #c1dad6;
+  margin-up: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.post-title {
+  margin: 10px;
+  color: #c1dad6;
+  font-size: 35px;
+}
+
+.post-description {
+  margin: 10px;
+  color: #343e41;
+}
+
+.post-content {
+  margin: 10px;
+  color: #343e41;
+}
+
+.post-info {
+  margin: 10px;
+  color: #343e41;
+}
+
+.post-contributor-link {
+  color: #343e41;
+  text-decoration: underline;
+}
+
+.post-contributor-link:hover {
+  color: #c1dad6;
+}
+
+.bootsy-area {
+  resize: vertical;
+  height: 400px;
+}
+
+/* smartphone */
+@media screen and (max-width: 1000px) {
+  .post-title {
+    font-size: 50px;
+  }
+
+  .div-post {
+    border: dashed 4px #c1dad6;
+    border-radius: 10px;
+  }
+}

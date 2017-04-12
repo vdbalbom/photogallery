@@ -14,7 +14,7 @@
       <p class="contributor-page-title"> Tags </p>
       <p id="contributor-page-contributor-tags">
         <% recent_contributor_tags.each do |tag| %>
-          <%= link_to tag.name, contributor_and_tag_photos_path(@contributor.id, tag.id), class:"contributor-page-tag" %>
+          <%= link_to tag.name, contributor_tag_photos_path(@contributor.id, tag.id), class:"contributor-page-tag" %>
         <% end  %>
       </p>
       <p class="contributor-page-see-more"> <%= link_to "see more...", contributor_tags_path(@contributor.id) %> </p>

@@ -1,20 +1,41 @@
 <div class="about-container">
-  <h1 class="title"> About </h1>
-  <div class="about-container"> <%= site_description %> </div>
+  <h1> About </h1>
+  <p> <%= site_description %> </p>
 </div>
 
 <div class="recent-container">
-  <h1 class="title"> Recent Uploads </h1>
+  <h1> Recent Uploads </h1>
   <div class="photos-bloc">
-    <%= render 'layouts/list_photos' %>
+    <% @photos.each do |photo| %>
+        <%= link_to image_tag(photo.image.url(:thumb), class: "thumb thumb-link"), show_photo_path(photo.id) %>
+    <% end %>
   </div>
-  <%= link_to "see more...", photos_path %>
+  <p> <%= link_to "see more...", all_photos_path %> </p>
 </div>
 
 <div class="recent-container">
-  <h1 class="title"> Recent Tags </h1>
+  <h1> Recent Tags </h1>
   <div class="tags-bloc">
-    <%= render 'layouts/list_tags' %>
+    <% @tags.each do |tag| %>
+        <%= link_to tag.name, tag_photos_path(tag.id), class: "tag big-tag" %>
+    <% end %>
   </div>
-  <%= link_to "see more...", all_tags_path %>
+  <p> <%= link_to "see more...", all_tags_path %> </p>
+</div>
+
+<div>
+  <h1> Recent Posts </h1>
+  <div class="tags-bloc">
+    <% @posts.each do |post| %>
+      <div class="div-post">
+        <%= link_to post.title, show_post_path(post.id), class:"post-title" %>
+        <p class="post-description"> <%= post.description %> </p>
+        <p class="post-info">
+          <%= "Posted at #{post.created_at.to_formatted_s(:long_ordinal)} by" %>
+          <%= link_to post.contributor.name, show_contributor_path(post.contributor.id), class:"post-contributor-link" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <p> <%= link_to "see more...", all_posts_path %> </p>
 </div>
