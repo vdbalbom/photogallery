@@ -30,3 +30,6 @@ app/views/layouts/_ad_sense.html.erb
 
 # Ignore public assets
 /public/assets
+
+# Ignore my key
+/key.txt
