@@ -27,3 +27,6 @@ app/views/layouts/_ad_sense.html.erb
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore public assets
+/public/assets

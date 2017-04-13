@@ -1,10 +1,16 @@
-run:
+run-dev:
+	docker-compose stop && \
+	docker-compose rm && \
+	docker-compose build photogallery-dev && \
+	docker-compose run --service-ports photogallery-dev
+
+run-prod:
 	docker-compose stop && \
 	docker-compose rm && \
 	docker-compose build nginx photogallery && \
 	docker-compose run --service-ports nginx
 
-run-detached:
+run-prod-detached:
 	docker-compose stop && \
   docker-compose rm && \
   docker-compose build nginx photogallery && \
