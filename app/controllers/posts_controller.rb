@@ -32,6 +32,7 @@ class PostsController < ApplicationController
     if contributor_logged_in?
       post = Post.find(params[:post_id])
       if current_contributor.id == post.contributor_id
+        @post = post
         if post.update_attributes(post_params)
           flash.now[:success] = 'Post updated.'
           render 'edit'
@@ -52,13 +53,13 @@ class PostsController < ApplicationController
       post = Post.find(params[:post_id])
       if post.contributor_id == current_contributor.id
         post.delete
-        redirect_to posts_path
+        redirect_to all_posts_path
       end
     end
     if admin_logged_in?
       post = Post.find(params[:post_id])
       post.delete
-      redirect_to posts_path
+      redirect_to all_posts_path
     end
   end
 

@@ -56,7 +56,17 @@ Rails.application.routes.draw do
   get 'posts/:post_id/show',
         to: 'posts#show',
         as: 'show_post'
-  get 'posts/edit'
+  get 'posts/:post_id/edit',
+        to: 'posts#edit',
+        as: 'edit_post'
+  post 'posts/:post_id/edit',
+        to: 'posts#update'
+  patch 'posts/:post_id/edit',
+        to: 'posts#update'
+  delete 'posts/:post_id/show',
+        to: 'posts#delete',
+        as: 'delete_post'
+
 
 
   get 'admin/site_settings'
