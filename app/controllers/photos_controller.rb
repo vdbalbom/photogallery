@@ -22,21 +22,16 @@ class PhotosController < ApplicationController
     if contributor_logged_in?
       @photo = Photo.new(photo_params)
       @photo.contributor = current_contributor
-      if tag_list_temp_is_valid? @photo.tag_list_temp
-        if @photo.save
-          @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
-          @photo.save!
-          if !@photo.tag_list_temp.empty?
-            add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
-          end
-          flash.now[:success] = 'New photo uploaded.'
-          render 'new'
-        else
-          flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
-          render 'new'
+      if @photo.save
+        @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
+        @photo.save!
+        if !@photo.tag_list_temp.empty?
+          add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
         end
+        flash.now[:success] = 'New photo uploaded.'
+        render 'new'
       else
-        flash.now[:danger] = "Tag list is invalid."
+        flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
         render 'new'
       end
     end
@@ -51,24 +46,19 @@ class PhotosController < ApplicationController
         if !@photo.tag_list_temp.empty?
           old_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
         end
-        if tag_list_temp_is_valid? @photo.tag_list_temp
-          if @photo.update_attributes(edit_photo_params)
-            @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
-            @photo.save!
-            new_tag_name_list = []
-            if !@photo.tag_list_temp.empty?
-              new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
-            end
-            delete_tags @photo, old_tag_name_list - new_tag_name_list
-            add_tags @photo, new_tag_name_list - old_tag_name_list
-            flash.now[:success] = 'Settings updated.'
-            render 'edit'
-          else
-            flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
-            render 'edit'
+        if @photo.update_attributes(edit_photo_params)
+          @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
+          @photo.save!
+          new_tag_name_list = []
+          if !@photo.tag_list_temp.empty?
+            new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
           end
+          delete_tags @photo, old_tag_name_list - new_tag_name_list
+          add_tags @photo, new_tag_name_list - old_tag_name_list
+          flash.now[:success] = 'Settings updated.'
+          render 'edit'
         else
-          flash.now[:danger] = "Tag list is invalid."
+          flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
           render 'edit'
         end
       end
@@ -114,11 +104,6 @@ class PhotosController < ApplicationController
         Tagger.find_by(tag_id: tag.id, photo_id: photo.id).delete
         tag.delete if tag.photos.empty?
       end
-    end
-
-    def tag_list_temp_is_valid? tag_list_temp
-      # removing matches the remainder needs to be empty
-      tag_list_temp.gsub(/(#(\w|\s|&)*(\w|&)+(\w|\s|&)*)*/, "").empty?
     end
 
     def format_tag_list_temp tag_list_temp
