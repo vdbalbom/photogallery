@@ -13,5 +13,9 @@ class Photo < ApplicationRecord
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ }
   validates_attachment_size :image, :in => 0.megabytes..2.megabytes
 
-  validates :tag_list_temp, length: {maximum: 500}
+  VALID_TAG_LIST = /\A(\s)*(\#[a-z|A-Z|\s|&|0-9]+)*\z/x
+  validates :tag_list_temp, format: { with: VALID_TAG_LIST,
+                                      message: "Wrong format for tags." },
+                            length: {maximum: 500}
+
 end
