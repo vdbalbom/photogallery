@@ -107,20 +107,7 @@ class PhotosController < ApplicationController
     end
 
     def format_tag_list_temp tag_list_temp
-      if tag_list_temp.remove(' ').empty?
-        ''
-      else
-        # squeeze(' ') removes extra spaces
-        # rstrip removes space in final of the string
-        # gsub(' #','#').gsub('# ','#') replaces all ' #' or '# ' for '#' in the string
-        # [1..-1] discards the # in the beggining of the string
-        # split('#') makes a tag array
-        # uniq removes duplicated tags of the tag array
-        # join(' #') transforms the array into a string separated by ' #'
-        # '#' + in the beggining of the sentence puts the '#'
-        #    in the beggining of the string again
-        '#' + tag_list_temp.squeeze(' ').rstrip.gsub(' #', '#').gsub('# ','#')[1..-1].split('#').uniq.join(' #')
-      end
+      tag_list_temp.remove(' ').split('#').uniq.join(' #').lstrip
     end
 
     def photo_params
