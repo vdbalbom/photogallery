@@ -11,6 +11,8 @@ gem 'rails', '~> 5.0.1'
 
 gem 'rename'
 
+gem 'rspec-rails'
+
 gem 'bootsy'
 
 gem 'bootstrap-sass', '3.3.6'
