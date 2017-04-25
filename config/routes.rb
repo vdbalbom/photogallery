@@ -88,7 +88,7 @@ Rails.application.routes.draw do
   post 'admin/add_contributor', to: 'contributors#create'
   patch 'admin/add_contributor', to: 'contributors#create'
 
-  get '/login', to: 'contributor_session#new'
+  get '/login', to: 'contributor_session#new', as: 'login'
   post '/login', to: 'contributor_session#create'
   patch '/login', to: 'contributor_session#create'
   delete '/login', to: 'contributor_session#destroy'
