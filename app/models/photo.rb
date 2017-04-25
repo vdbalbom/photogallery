@@ -18,4 +18,25 @@ class Photo < ApplicationRecord
                                       message: "Wrong format for tags." },
                             length: {maximum: 500}
 
+  def add_tags tag_name_list
+    tag_name_list.each do |tag_name|
+      tag = Tag.find_by(name: tag_name)
+      tag = Tag.create(name: tag_name) if tag.nil?
+      Tagger.create(photo_id: self.id, tag_id: tag.id)
+    end
+  end
+
+  def update_tags tag_name_list
+    delete_tags
+    add_tags tag_name_list
+  end
+
+  def delete_tags
+    self.taggers.each do |tagger|
+      tag = Tag.find(tagger.tag_id)
+      tagger.delete
+      tag.delete if tag.photos.count == 0
+    end
+  end
+
 end

@@ -1,33 +1,29 @@
 class PhotosController < ApplicationController
+
+  def index
+    @Photos = Photo.all
+  end
+
+  def new
+    @photo = Photo.new
+  end
+
   def show
     @photo = Photo.find(params[:photo_id])
   end
 
   def edit
-    if contributor_logged_in?
-      photo = Photo.find(params[:photo_id])
-      if photo.contributor_id == current_contributor.id
-        @photo = photo
-      end
-    end
-  end
-
-  def new
-    if contributor_logged_in?
-      @photo = Photo.new
-    end
+    @photo = Photo.find(params[:photo_id])
   end
 
   def create
     if contributor_logged_in?
       @photo = Photo.new(photo_params)
       @photo.contributor = current_contributor
-      if @photo.save
-        @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
+      @photo.tag_list_temp = format_tag_list_temp(@photo.tag_list_temp)
+      if @photo.save!
+        @photo.add_tags split_tags(@photo.tag_list_temp)
         @photo.save!
-        if !@photo.tag_list_temp.empty?
-          add_tags @photo, @photo.tag_list_temp[1..-1].split(' #')
-        end
         flash.now[:success] = 'New photo uploaded.'
         render 'new'
       else
@@ -38,72 +34,37 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if contributor_logged_in?
-      photo = Photo.find(params[:photo_id])
-      if photo.contributor_id == current_contributor.id
-        @photo = photo
-        old_tag_name_list = []
-        if !@photo.tag_list_temp.empty?
-          old_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
-        end
-        if @photo.update_attributes(edit_photo_params)
-          @photo.tag_list_temp = format_tag_list_temp @photo.tag_list_temp
-          @photo.save!
-          new_tag_name_list = []
-          if !@photo.tag_list_temp.empty?
-            new_tag_name_list = @photo.tag_list_temp[1..-1].split(' #')
+    @photo = Photo.find(params[:photo_id])
+    if contributor_logged_in? && @photo.contributor == current_contributor
+          @photo.assign_attributes(edit_photo_params)
+          @photo.tag_list_temp = format_tag_list_temp(@photo.tag_list_temp)
+          if @photo.save!
+            @photo.update_tags split_tags(@photo.tag_list_temp)
+            @photo.save!
+            flash.now[:success] = 'Settings updated.'
+            render 'edit'
+          else
+            flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
+            render 'edit'
           end
-          delete_tags @photo, old_tag_name_list - new_tag_name_list
-          add_tags @photo, new_tag_name_list - old_tag_name_list
-          flash.now[:success] = 'Settings updated.'
-          render 'edit'
-        else
-          flash.now[:danger] = @photo.errors.full_messages.join("<br>").html_safe
-          render 'edit'
-        end
       end
-    end
   end
 
   def delete
-    if contributor_logged_in?
+    if admin_logged_in? || contributor_logged_in?
       photo = Photo.find(params[:photo_id])
-      if photo.contributor_id == current_contributor.id
-        if !photo.tag_list_temp.empty?
-          delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
-        end
+      if admin_logged_in? || photo.contributor == current_contributor
+        photo.delete_tags
         photo.delete
-        redirect_to contributor_photos_path(current_contributor.id)
+        redirect_to root_path
       end
     end
-    if admin_logged_in?
-      photo = Photo.find(params[:photo_id])
-      delete_tags photo, photo.tag_list_temp[1..-1].split(' #')
-      photo.delete
-      redirect_to photos_path
-    end
-  end
-
-  def index
-    @Photos = Photo.all
   end
 
   private
 
-    def add_tags photo, tag_name_list
-      tag_name_list.each do |tag_name|
-        tag = Tag.find_by(name: tag_name)
-        tag = Tag.create(name: tag_name) if tag.nil?
-        Tagger.create(photo_id: photo.id, tag_id: tag.id)
-      end
-    end
-
-    def delete_tags photo, tag_name_list
-      tag_name_list.each do |tag_name|
-        tag = Tag.find_by(name: tag_name)
-        Tagger.find_by(tag_id: tag.id, photo_id: photo.id).delete
-        tag.delete if tag.photos.empty?
-      end
+    def split_tags tag_list_temp
+      tag_list_temp.remove(' ').gsub('#',' ').lstrip.split.uniq
     end
 
     def format_tag_list_temp tag_list_temp
@@ -112,8 +73,7 @@ class PhotosController < ApplicationController
 
     def photo_params
       params.require(:photo).permit(:title,
-                                    :image,
-                                    :styles,
+                                    :image, :styles,
                                     :description,
                                     :tag_list_temp)
     end
