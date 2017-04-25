@@ -13,6 +13,8 @@ gem 'rename'
 
 gem 'rspec-rails'
 
+gem 'factory_girl_rails'
+
 gem 'bootsy'
 
 gem 'bootstrap-sass', '3.3.6'
