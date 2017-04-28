@@ -1,14 +1,47 @@
 describe ContributorSessionController, type: :controller do
 
   before do
-    @contributor = Contributor.create(name: "test123", login: "test123", password: "test123", email: "test123@sample.com")
+    @contributor = Contributor.create(name: "testcontributor", login: "testcontributor", password: "testcontributor", email: "testcontributor@example.com")
   end
 
-  it "create_and_destroy_session" do
-    post :create, params: {session: {login: 'test123', password: 'test123'}}
+  it "create and destroy session" do
+    sign_out
+
+    post :create, params: {session: {login: 'testcontributor', password: 'testcontributor'}}
     expect(current_contributor).to eq(@contributor)
     delete :destroy
     expect(current_contributor.nil?).to eq(true)
+
+    sign_out
+  end
+
+  it "try to create a session without sign out" do
+    contributor_sign_in "testlogin", "testpassword"
+
+    post :create, params: {session: {login: 'testcontributor', password: 'testcontributor'}}
+    expect(current_contributor).to eq(nil)
+
+    admin_sign_in "testlogin", "testpassword"
+
+    post :create, params: {session: {login: 'testcontributor', password: 'testcontributor'}}
+    expect(current_contributor).to eq(nil)
+
+    sign_out
+  end
+
+  it "try to create a session with wrong login or password" do
+    sign_out
+
+    post :create, params: {session: {login: 'error', password: 'testcontributor'}}
+    expect(current_contributor).to eq(nil)
+
+    post :create, params: {session: {login: 'testcontributor', password: 'error'}}
+    expect(current_contributor).to eq(nil)
+
+    post :create, params: {session: {login: 'error', password: 'error'}}
+    expect(current_contributor).to eq(nil)
+
+    sign_out
   end
 
 end
