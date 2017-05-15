@@ -81,7 +81,7 @@ Rails.application.routes.draw do
 
   get 'contributor/settings', to: 'contributors#settings'
   patch 'contributor/settings', to: 'contributors#update_settings'
-  get 'contributor/change_password', to: 'contributors#settings'
+  get 'contributor/change_password', to: 'contributors#change_password'
   patch 'contributor/change_password', to: 'contributors#update_password'
 
   get 'admin/add_contributor', to: 'contributors#new', as: 'new_contributor'
