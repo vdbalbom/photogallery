@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get 'contributors/:contributor_id/photos/',
         to: 'contributors#photos',
         as: 'contributor_photos'
+  get 'contributors/:contributor_id/posts/',
+        to: 'contributors#posts',
+        as: 'contributor_posts'
   get 'contributors/:contributor_id/tags/:tag_id/photos/',
         to: 'contributors#tag_photos',
         as: 'contributor_tag_photos'

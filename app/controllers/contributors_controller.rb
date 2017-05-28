@@ -97,6 +97,11 @@ class ContributorsController < ApplicationController
     @contributor = Contributor.find(params[:contributor_id])
   end
 
+  def posts
+    @contributor = Contributor.find(params[:contributor_id])
+    @posts = @contributor.posts
+  end
+
   private
 
   def contributor_params
