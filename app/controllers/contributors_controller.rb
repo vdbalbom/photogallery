@@ -5,7 +5,8 @@ class ContributorsController < ApplicationController
   end
 
   def photos
-    @photos = Contributor.find(params[:contributor_id]).photos
+    @contributor = Contributor.find(params[:contributor_id])
+    @photos = @contributor.photos
   end
 
   def tag_photos
