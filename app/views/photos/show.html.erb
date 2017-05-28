@@ -23,7 +23,7 @@
           <% end %>
         </div>
           <div> <%= @photo.description %> </div>
-          Posted at <%= @photo.created_at.to_formatted_s(:long_ordinal) %> by <%= link_to @photo.contributor.name, contributor_photos_path(@photo.contributor.id) %>
+          Posted at <%= @photo.created_at.to_formatted_s(:long_ordinal) %> by <%= link_to @photo.contributor.name, show_contributor_path(@photo.contributor.id) %>
       </div>
     </div>
   <% else %>
