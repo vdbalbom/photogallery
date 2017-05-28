@@ -10,7 +10,9 @@ class ContributorsController < ApplicationController
   end
 
   def tag_photos
-    @photos = Contributor.find(params[:contributor_id]).photos & Tag.find(params[:tag_id]).photos
+    @tag = Tag.find(params[:tag_id])
+    @contributor = Contributor.find(params[:contributor_id])
+    @photos = @contributor.photos & @tag.photos
   end
 
   def new
